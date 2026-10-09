@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5b4bdb">
+<title>BM Tahun 4 • Misi Golongan Kata</title>
+<style>
+:root{--ink:#20224a;--purple:#6554d9;--pink:#ff5fa2;--yellow:#ffd84d;--mint:#63e6be;--sky:#76d7ff}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#b9f3ff,#fce1ff,#fff1b8);min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-10%;z-index:-1;background:radial-gradient(circle at 15% 25%,#fff9 0 4px,transparent 5px),radial-gradient(circle at 75% 65%,#fff9 0 6px,transparent 7px),radial-gradient(circle at 45% 85%,#fff8 0 5px,transparent 6px);background-size:120px 120px,180px 180px,150px 150px;animation:floatbg 18s linear infinite}
+@keyframes floatbg{to{background-position:180px -120px,-180px 180px,150px -150px}}
+header{text-align:center;padding:22px 14px 12px}.tag{display:inline-block;background:#fff9;border:2px solid #fff;border-radius:999px;padding:6px 13px;font-weight:800;font-size:.83rem}
+h1{font-size:clamp(1.8rem,5vw,3.2rem);line-height:1.05;margin:12px 0 8px;color:#4536b6;text-shadow:2px 3px #fff}
+.subtitle{font-weight:700;margin:0 auto;max-width:760px}
+.container{max-width:1100px;margin:auto;padding:12px}
+.panel{background:#ffffffdf;border:2px solid #fff;border-radius:24px;padding:18px;box-shadow:0 12px 28px #5540a51c;margin-bottom:16px}
+.topline{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+button{font:inherit;font-weight:800;border:0;border-radius:14px;padding:11px 15px;cursor:pointer;transition:transform .15s,filter .15s;box-shadow:0 4px 0 #29245a25}
+button:hover{transform:translateY(-2px);filter:brightness(1.04)}button:active{transform:translateY(2px);box-shadow:none}
+.primary{background:var(--purple);color:white}.pink{background:var(--pink);color:white}.yellow{background:var(--yellow);color:#4b3b00}.mint{background:var(--mint);color:#064d3a}.soft{background:#f0edff;color:#4536b6}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.tabs button{flex:1;min-width:130px}
+.view{display:none}.view.active{display:block}
+.notegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.notecard{border-radius:18px;padding:15px;background:linear-gradient(145deg,#fff,#f3f0ff);border:2px solid #eee9ff}
+.notecard h3{margin:0 0 8px;color:#5140c6}.emoji{font-size:1.6rem}
+.example{background:#fff6cc;padding:8px 10px;border-radius:10px;font-weight:700;margin-top:8px}
+.small{font-size:.9rem;opacity:.86}.meta{font-size:.9rem;line-height:1.65}
+.gamegrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:16px;align-items:start}
+#gameCanvas{width:100%;max-width:540px;aspect-ratio:1;display:block;margin:auto;border:5px solid #5c4ac9;border-radius:20px;background:#c8f7d9;touch-action:manipulation}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.stat{background:#f1edff;padding:8px 12px;border-radius:12px;font-weight:900}
+.controls{display:grid;grid-template-columns:repeat(3,55px);justify-content:center;gap:6px;margin:12px auto}.controls button{padding:8px;font-size:1.3rem}
+.question{font-size:1.12rem;font-weight:850;line-height:1.4}.answers{display:grid;gap:9px;margin:14px 0}.answers button{text-align:left;background:#f1efff;color:#332a7b;border:2px solid transparent;box-shadow:none}.answers button:hover{border-color:#8b7df0}.answers button:disabled{opacity:.75;cursor:default}
+.feedback{min-height:50px;font-weight:900;border-radius:12px;padding:10px;background:#f7f5ff}.feedback.good{background:#d9fff0;color:#08764d}.feedback.bad{background:#fff0f5;color:#a5285c}
+.progress{height:13px;background:#e7e3ff;border-radius:99px;overflow:hidden;margin:12px 0}.progress div{height:100%;width:0;background:linear-gradient(90deg,#ff67aa,#ffd84d,#5ee6b3);transition:width .3s}
+.win{display:none;text-align:center;padding:20px;background:linear-gradient(135deg,#fff0a8,#ffc9ed,#b9f4ff);border-radius:22px;animation:pop .5s ease}.win.show{display:block}@keyframes pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.stars{font-size:2rem;letter-spacing:5px}.footer{text-align:center;padding:12px 8px 28px;font-size:.86rem}
+#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,130px);background:#30265f;color:white;padding:12px 18px;border-radius:99px;z-index:5;font-weight:900;transition:transform .3s}#toast.show{transform:translate(-50%,0)}
+@media(max-width:760px){.gamegrid{grid-template-columns:1fr}.panel{padding:14px}.topline{align-items:flex-start}.tabs button{min-width:105px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="tag">🎓 BAHASA MELAYU • TAHUN 4</div>
+ <h1>🌈 Misi Golongan Kata 🐍</h1>
+ <p class="subtitle">Belajar sambil bermain! Kumpul bintang, jawab 25 soalan dan jadi Juara Bahasa.</p>
+</header>
+<main class="container">
+<section class="panel">
+ <div class="topline">
+  <div class="meta"><b>👨🏻‍🏫 Guru:</b> MUHAMAD SYAWALWAHED<br><b>🏫 Sekolah:</b> SK (P) JALAN YAHYA AWAL</div>
+  <button id="soundBtn" class="yellow" onclick="toggleSound()">🔊 Bunyi: ON</button>
+ </div>
+ <p class="meta"><b>🎯 Objektif:</b> Murid dapat mengenal pasti dan menggunakan golongan kata dalam ayat dengan betul.</p>
+ <p class="meta"><b>📖 Fokus:</b> Tatabahasa — kata nama, kata kerja, kata adjektif dan kata tugas. <span class="small">Rujukan kurikulum: selaraskan dengan SK/SP DSKP BM Tahun 4 yang digunakan oleh sekolah.</span></p>
+</section>
+<div class="tabs">
+ <button class="primary" onclick="showView('notes')">📚 Nota Infografik</button>
+ <button class="pink" onclick="showView('game')">🐍 Game Ular Kata</button>
+ <button class="mint" onclick="showView('quiz')">🧠 Cabaran 25 Soalan</button>
+</div>
+<section id="notes" class="view active">
+ <div class="panel">
+  <h2>🧩 Kenali Golongan Kata</h2>
+  <p>Golongan kata ialah kumpulan perkataan berdasarkan fungsi dan penggunaannya dalam ayat.</p>
+  <div class="notegrid">
+   <article class="notecard"><div class="emoji">👧🏻📚</div><h3>Kata Nama</h3><p>Menamakan orang, haiwan, tempat atau benda.</p><div class="example">Contoh: Aina, kucing, sekolah, buku.</div></article>
+   <article class="notecard"><div class="emoji">🏃🏻‍♀️⚽</div><h3>Kata Kerja</h3><p>Menunjukkan perbuatan atau keadaan melakukan sesuatu.</p><div class="example">Contoh: berlari, membaca, menyanyi, tidur.</div></article>
+   <article class="notecard"><div class="emoji">🌸😊</div><h3>Kata Adjektif</h3><p>Menerangkan sifat atau keadaan sesuatu.</p><div class="example">Contoh: cantik, tinggi, rajin, manis.</div></article>
+   <article class="notecard"><div class="emoji">🔗💬</div><h3>Kata Tugas</h3><p>Kata yang membantu membina ayat dan membawa fungsi tatabahasa tertentu.</p><div class="example">Contoh: di, ke, dari, dan, tetapi, sedang.</div></article>
+  </div>
+  <h3>💡 Tip Pantas</h3><p>Siapa atau apa? → kata nama. Buat apa? → kata kerja. Bagaimana sifatnya? → kata adjektif. Kata yang menghubungkan atau menunjukkan hubungan? → mungkin kata tugas.</p>
+ </div>
+</section>
+<section id="game" class="view">
+ <div class="panel">
+  <h2>🐍 Game Ular Kata</h2>
+  <p>Gerakkan ular dengan anak panah papan kekunci atau butang arah. Kumpulkan bintang untuk soalan bonus. Elakkan dinding dan badan ular — kelajuan ular kekal sama.</p>
+  <div class="gamegrid">
+   <div>
+    <canvas id="gameCanvas" width="420" height="420" aria-label="Permainan ular"></canvas>
+    <div class="controls">
+     <span></span><button class="soft" onclick="setDir(0,-1)">⬆️</button><span></span>
+     <button class="soft" onclick="setDir(-1,0)">⬅️</button><button class="soft" onclick="setDir(0,1)">⬇️</button><button class="soft" onclick="setDir(1,0)">➡️</button>
+    </div>
+    <div class="topline"><button class="primary" onclick="startSnake()">▶️ Mula / Main semula</button><span class="small">Kelajuan tetap • Jangan langgar dinding!</span></div>
+   </div>
+   <div>
+    <div class="stats"><span class="stat">⭐ Bintang: <b id="snakeStars">0</b></span><span class="stat">🍎 Kutipan: <b id="snakeScore">0</b></span></div>
+    <div class="notecard"><h3>🎮 Cara bermain</h3><p>1. Tekan Mula.<br>2. Kawal ular ke arah bintang makanan.<br>3. Setiap 3 kutipan, jawab satu soalan bonus.<br>4. Jika ular melanggar dinding, permainan tamat.</p></div>
+    <div id="snakeQuestion" class="notecard" style="display:none;margin-top:12px"></div>
+    <div id="snakeMessage" class="feedback" style="margin-top:12px">Sedia? Jom bermain!</div>
+   </div>
+  </div>
+ </div>
+</section>
+<section id="quiz" class="view">
+ <div class="panel">
+  <div class="topline"><h2>🧠 Cabaran 25 Soalan</h2><span class="stat">⭐ <b id="quizStars">0</b></span></div>
+  <p>Jawab semua soalan. Jawapan betul mendapat bintang. Anda boleh cuba semula jika belum tepat.</p>
+  <div class="progress"><div id="progressBar"></div></div>
+  <div id="quizArea">
+   <div class="small" id="qCounter">Soalan 1 daripada 25</div>
+   <p class="question" id="qText"></p>
+   <div class="answers" id="answers"></div>
+   <div class="feedback" id="feedback" aria-live="polite">Pilih jawapan yang paling tepat.</div>
+   <div class="topline" style="margin-top:12px"><button class="soft" onclick="readQuestion()">🔈 Dengar soalan</button><button id="nextBtn" class="primary" onclick="nextQuestion()" disabled>Soalan seterusnya ➜</button></div>
+  </div>
+  <div id="winPanel" class="win"><div class="stars">🏆🌟🎉</div><h2>TAHNIAH, JUARA BAHASA!</h2><p id="winText"></p><p>Teruskan membaca dan berlatih setiap hari.</p><button class="primary" onclick="restartQuiz()">🔁 Cuba lagi</button></div>
+ </div>
+</section>
+</main>
+<div class="footer">Dibina untuk pembelajaran Bahasa Melayu Tahun 4 • Mesra telefon dan tablet 🌟</div>
+<div id="toast">Betul! Syabas!</div>
+<script>
+const questions=[
+{q:"Perkataan manakah kata nama?",o:["berlari","sekolah","cantik","sedang"],a:1,e:"Sekolah ialah nama tempat."},
+{q:"Pilih kata kerja dalam ayat: Amir membaca buku.",o:["Amir","membaca","buku","ayat"],a:1,e:"Membaca menunjukkan perbuatan."},
+{q:"Perkataan 'manis' ialah kata…",o:["nama","kerja","adjektif","tugas"],a:2,e:"Manis menerangkan rasa atau sifat."},
+{q:"Yang manakah kata tugas?",o:["kucing","tinggi","bermain","dan"],a:3,e:"Dan ialah kata hubung."},
+{q:"Pilih kata nama haiwan.",o:["arnab","berlari","lembut","tetapi"],a:0,e:"Arnab ialah nama haiwan."},
+{q:"Dalam ayat 'Siti menyanyi dengan merdu', kata kerja ialah…",o:["Siti","menyanyi","dengan","merdu"],a:1,e:"Menyanyi ialah perbuatan."},
+{q:"Perkataan yang menerangkan sifat ialah…",o:["meja","makan","rajin","ke"],a:2,e:"Rajin menerangkan sifat seseorang."},
+{q:"Pilih kata tugas yang menunjukkan tempat.",o:["di","cantik","bunga","tidur"],a:0,e:"Di ialah kata sendi nama."},
+{q:"'Doktor' ialah kata nama…",o:["khas sahaja","am","kerja","adjektif"],a:1,e:"Doktor ialah kata nama am bagi pekerjaan."},
+{q:"Yang manakah kata kerja?",o:["melompat","biru","kerusi","kerana"],a:0,e:"Melompat menunjukkan perbuatan."},
+{q:"Pilih kata adjektif warna.",o:["merah","berjalan","buku","daripada"],a:0,e:"Merah menerangkan warna."},
+{q:"Dalam ayat 'Buku itu di atas meja', kata tugas ialah…",o:["buku","atas","meja","itu"],a:1,e:"Atas berfungsi sebagai kata arah dalam ayat ini."},
+{q:"Perkataan 'mereka' ialah kata ganti nama diri…",o:["pertama","kedua","ketiga","tunjuk"],a:2,e:"Mereka merujuk orang yang diperkatakan."},
+{q:"Pilih kata nama tempat.",o:["Johor Bahru","menari","laju","tetapi"],a:0,e:"Johor Bahru ialah nama tempat."},
+{q:"Perkataan 'sedang' dalam 'Ali sedang tidur' ialah…",o:["kata nama","kata kerja","kata tugas","kata adjektif"],a:2,e:"Sedang ialah kata bantu aspek."},
+{q:"Yang manakah kata adjektif ukuran?",o:["panjang","berlari","mereka","dari"],a:0,e:"Panjang menerangkan ukuran."},
+{q:"Pilih kata kerja yang sesuai: Ibu _____ nasi.",o:["sedap","memasak","dapur","dan"],a:1,e:"Memasak ialah perbuatan yang dilakukan oleh ibu."},
+{q:"Perkataan 'kerana' digunakan untuk…",o:["menamakan benda","menunjukkan sebab","menerangkan warna","menunjukkan perbuatan"],a:1,e:"Kerana ialah kata hubung yang menunjukkan sebab."},
+{q:"Yang manakah kata nama khas?",o:["bandar","guru","Sang Kancil","sekolah"],a:2,e:"Sang Kancil ialah nama khas watak."},
+{q:"Pilih kata adjektif perasaan.",o:["gembira","menulis","pensel","ke"],a:0,e:"Gembira menerangkan perasaan."},
+{q:"Dalam ayat 'Mereka bermain di padang', kata nama ialah…",o:["bermain","di","padang","dengan"],a:2,e:"Padang ialah nama tempat."},
+{q:"Pilih kata tugas yang menunjukkan arah tujuan.",o:["ke","tinggi","tidur","bunga"],a:0,e:"Ke menunjukkan arah atau tujuan."},
+{q:"Perkataan 'laju' dalam 'Kereta itu laju' ialah…",o:["kata nama","kata adjektif","kata tugas","kata ganti nama"],a:1,e:"Laju menerangkan sifat atau keadaan."},
+{q:"Pilih ayat yang mempunyai kata kerja.",o:["Baju itu biru.","Adik ketawa.","Rumah itu besar.","Buku di meja."],a:1,e:"Ketawa ialah kata kerja."},
+{q:"Apakah tujuan mempelajari golongan kata?",o:["Mengelirukan ayat","Membina ayat dengan betul","Mengira nombor","Melukis peta"],a:1,e:"Mengenal golongan kata membantu kita membina ayat yang betul."}
+];
+let soundOn=true,quizIndex=0,quizStars=0,answered=false;
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='game')drawSnake()}
+function toggleSound(){soundOn=!soundOn;document.getElementById('soundBtn').textContent=soundOn?'🔊 Bunyi: ON':'🔇 Bunyi: OFF';if(soundOn)speak('Bunyi diaktifkan. Jom belajar!')}
+function speak(text){if(!soundOn||!('speechSynthesis'in window))return;window.speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(text);u.lang='ms-MY';u.rate=.92;let voices=window.speechSynthesis.getVoices();let v=voices.find(x=>x.lang.toLowerCase().startsWith('ms'));if(v)u.voice=v;window.speechSynthesis.speak(u)}
+function tone(ok){if(!soundOn)return;try{let C=window.AudioContext||window.webkitAudioContext,c=new C(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?740:220;g.gain.value=.08;o.start();o.stop(c.currentTime+.16)}catch(e){}}
+function toast(t){let el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1400)}
+function renderQuestion(){answered=false;let q=questions[quizIndex];document.getElementById('qCounter').textContent=`Soalan ${quizIndex+1} daripada ${questions.length}`;document.getElementById('qText').textContent=q.q;document.getElementById('feedback').className='feedback';document.getElementById('feedback').textContent='Pilih jawapan yang paling tepat.';document.getElementById('nextBtn').disabled=true;document.getElementById('nextBtn').textContent=quizIndex===questions.length-1?'Lihat keputusan 🏆':'Soalan seterusnya ➜';document.getElementById('progressBar').style.width=(quizIndex/questions.length*100)+'%';let a=document.getElementById('answers');a.innerHTML='';q.o.forEach((s,i)=>{let b=document.createElement('button');b.textContent=String.fromCharCode(65+i)+'. '+s;b.onclick=()=>answer(i,b);a.appendChild(b)})}
+function answer(i,btn){if(answered)return;let q=questions[quizIndex],fb=document.getElementById('feedback');if(i===q.a){answered=true;quizStars++;document.getElementById('quizStars').textContent=quizStars;fb.className='feedback good';fb.textContent='✅ Betul! Syabas! '+q.e;tone(true);speak('Betul! Syabas! '+q.e);toast('⭐ Betul! Syabas!');[...document.querySelectorAll('#answers button')].forEach(b=>b.disabled=true);btn.style.background='#c8ffe8';document.getElementById('nextBtn').disabled=false}else{fb.className='feedback bad';fb.textContent='❌ Belum tepat. Cuba lagi!';tone(false);speak('Belum tepat. Cuba lagi!')}}
+function nextQuestion(){if(!answered)return;quizIndex++;if(quizIndex>=questions.length){document.getElementById('quizArea').style.display='none';document.getElementById('winPanel').classList.add('show');document.getElementById('progressBar').style.width='100%';document.getElementById('winText').textContent=`Anda memperoleh ${quizStars} daripada ${questions.length} bintang!`;speak('Tahniah, juara Bahasa! Anda memperoleh '+quizStars+' bintang.');return}renderQuestion()}
+function restartQuiz(){quizIndex=0;quizStars=0;document.getElementById('quizStars').textContent='0';document.getElementById('quizArea').style.display='block';document.getElementById('winPanel').classList.remove('show');renderQuestion()}
+function readQuestion(){speak(questions[quizIndex].q+'. Pilihan jawapan: '+questions[quizIndex].o.join(', '))}
+renderQuestion();
+
+// Snake game: fixed tick interval; wall/body collision ends the round.
+const cv=document.getElementById('gameCanvas'),ctx=cv.getContext('2d'),N=21,CELL=20;
+let snake=[],dir={x:1,y:0},nextDir={x:1,y:0},food={x:10,y:10},snakeScore=0,snakeStars=0,snakeTimer=null,snakeRunning=false,bonusShown=false;
+function randomFood(){let p;do{p={x:Math.floor(Math.random()*N),y:Math.floor(Math.random()*N)}}while(snake.some(s=>s.x===p.x&&s.y===p.y));return p}
+function startSnake(){clearInterval(snakeTimer);snake=[{x:5,y:10},{x:4,y:10},{x:3,y:10}];dir={x:1,y:0};nextDir={x:1,y:0};snakeScore=0;snakeStars=0;snakeRunning=true;bonusShown=false;food=randomFood();document.getElementById('snakeScore').textContent='0';document.getElementById('snakeStars').textContent='0';document.getElementById('snakeMessage').textContent='Jom! Kumpulkan makanan dan elakkan dinding.';document.getElementById('snakeQuestion').style.display='none';snakeTimer=setInterval(stepSnake,145);drawSnake()}
+function setDir(x,y){if(x===-dir.x&&y===-dir.y)return;nextDir={x,y}}
+document.addEventListener('keydown',e=>{let m={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0],w:[0,-1],s:[0,1],a:[-1,0],d:[1,0]};if(m[e.key]){e.preventDefault();setDir(...m[e.key])}});
+function stepSnake(){if(!snakeRunning)return;dir=nextDir;let head={x:snake[0].x+dir.x,y:snake[0].y+dir.y};if(head.x<0||head.y<0||head.x>=N||head.y>=N||snake.some((s,i)=>i<snake.length-1&&s.x===head.x&&s.y===head.y)){snakeRunning=false;clearInterval(snakeTimer);document.getElementById('snakeMessage').textContent='💥 Ular melanggar! Skor: '+snakeScore+'. Tekan Main semula untuk cuba lagi.';tone(false);speak('Permainan tamat. Cuba lagi!');drawSnake(true);return}snake.unshift(head);if(head.x===food.x&&head.y===food.y){snakeScore++;snakeStars++;document.getElementById('snakeScore').textContent=snakeScore;document.getElementById('snakeStars').textContent=snakeStars;food=randomFood();tone(true);if(snakeScore%3===0)showSnakeQuestion()}else snake.pop();drawSnake()}
+function drawSnake(over=false){if(!ctx)return;ctx.clearRect(0,0,420,420);ctx.fillStyle='#c8f7d9';ctx.fillRect(0,0,420,420);ctx.strokeStyle='#a4e8c1';ctx.lineWidth=1;for(let i=0;i<=N;i++){ctx.beginPath();ctx.moveTo(i*20,0);ctx.lineTo(i*20,420);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i*20);ctx.lineTo(420,i*20);ctx.stroke()}ctx.font='18px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('⭐',food.x*20+10,food.y*20+10);snake.forEach((s,i)=>{ctx.fillStyle=i===0?'#ff5fa2':'#6554d9';ctx.beginPath();ctx.roundRect(s.x*20+1,s.y*20+1,18,18,6);ctx.fill();if(i===0){ctx.fillStyle='white';ctx.fillRect(s.x*20+4,s.y*20+5,4,4);ctx.fillRect(s.x*20+12,s.y*20+5,4,4)}});if(over){ctx.fillStyle='#32265dbb';ctx.fillRect(0,0,420,420);ctx.fillStyle='white';ctx.font='bold 28px system-ui';ctx.fillText('CUBA LAGI! 🐍',210,200)}}
+function showSnakeQuestion(){if(bonusShown)return;bonusShown=true;snakeRunning=false;let q=questions[Math.floor(Math.random()*questions.length)],el=document.getElementById('snakeQuestion');el.style.display='block';el.innerHTML=`<h3>🎁 Soalan Bonus</h3><p>${q.q}</p>`;q.o.forEach((op,i)=>{let b=document.createElement('button');b.className='soft';b.style.display='block';b.style.width='100%';b.style.margin='6px 0';b.textContent=String.fromCharCode(65+i)+'. '+op;b.onclick=()=>{[...el.querySelectorAll('button')].forEach(x=>x.disabled=true);if(i===q.a){snakeStars+=2;document.getElementById('snakeStars').textContent=snakeStars;document.getElementById('snakeMessage').textContent='Betul! Syabas! +2 bintang. Ular bergerak semula.';tone(true);speak('Betul! Syabas!')}else{document.getElementById('snakeMessage').textContent='Belum tepat. Cuba lagi! Jawapan: '+q.o[q.a];tone(false);speak('Belum tepat. Cuba lagi!')}setTimeout(()=>{el.style.display='none';bonusShown=false;snakeRunning=true},1000)};el.appendChild(b)});document.getElementById('snakeMessage').textContent='Berhenti seketika untuk soalan bonus!';speak('Masa untuk soalan bonus!')}
+drawSnake();
+</script>
+</body>
+</html>
